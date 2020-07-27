@@ -1,0 +1,730 @@
+	@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
+	// font-family: "Lato", sans-serif;
+
+	@mixin font($color ,$fSize, $lHeight,$lSpacing:normal, $fWeight:400) {
+		color:$color;
+		font-size: $fSize;
+		line-height: $lHeight;
+		letter-spacing: $lSpacing;
+		font-weight: $fWeight;
+	}
+	@mixin pseudo ($width, $height,$left,$top:auto) {
+		content: "";
+		position: absolute;
+		width:$width;
+		height: $height;
+		top: $top ;
+		left: $left ;
+	}
+	html {
+		 scroll-behavior: smooth;
+	}
+	body {
+		font-family: "Lato", sans-serif;
+	}
+	a, button {
+		cursor: pointer;
+	}
+	.hidden {
+		overflow: hidden;
+	}
+	@keyframes preload {
+		0% {
+			transform:translate(-50%, -50%) rotate(0deg)
+		}
+		100% {
+			transform:translate(-50%, -50%) rotate(360deg);
+		}
+	}
+	.preload {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top:0;
+		left: 0;
+		background: #c1b7b7;
+		z-index: 5;
+		&:before{
+			content: "";
+			position: absolute;
+			top:50%;
+			left:50%;
+			width: 50px;
+			height: 50px;
+			background: url(../image/preload.png) no-repeat 50%/contain;
+			animation-name: preload;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+
+		}
+	}
+	.container {
+		max-width: 1180px;
+		padding: 0 15px;
+
+	}
+	.header {
+		background: url(../image/header_bg.jpg) no-repeat 0/cover;
+		padding: 20px 0 70px;
+	}
+
+
+
+
+	.navbar {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+
+				&__brand {
+					margin: 50px auto 0;
+					order:2;
+					width: 35%;
+					max-width: 180px;
+				}
+				&__brand-img {
+					width: 100%;
+
+				}
+	}
+		.enter {
+				&__list {
+					font-size: 0;
+					margin-bottom: 20px;
+
+				}
+
+				&__item {
+					display: inline-block;
+					font-size: .9rem;
+					margin: 0 30px 0 0;
+						&:last-child{
+						margin: 0;
+						}
+					}
+				&__link {
+					@include font(#fff,1rem,1.9,.7px,700);
+					text-decoration: none;
+					text-transform: uppercase;
+						&:hover{
+							color:darken(#fff, 10%);
+						}
+					}
+		}
+	.menu {
+		position: relative;
+		&__list {
+				padding:40px;
+				background: rgb(140,103,100);
+				border-radius: 15px;
+				position: absolute;
+				top:150%;
+				right:0;
+				transform: translate(50%);
+			}
+
+			&__link {
+				@include font(#fff,.9rem,2.1,.7px,700);
+				text-transform: uppercase;
+				white-space: nowrap;
+				text-decoration: none;
+				&:hover {
+					color:darken(#fff, 10%);
+					text-decoration: underline;
+					text-decoration-style: dashed;
+				}
+			}
+		}
+
+	.js-hidden-menu:not(.show){
+		display: none
+	}
+
+	.navbar__toggle {
+		background: transparent;
+		width: 25px;
+		height: 25px;
+		border: none;
+		padding: 0;
+		position: relative;
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				& .toggle__icon,&:before, &:after {
+					background: darken(#fff,15%);
+				}
+			}
+			&:before, &:after {
+						@include pseudo(inherit, 2px,0);
+						background: #fff;
+				}
+				&:before {
+					top:0;
+				}
+				&:after {
+					bottom: 0;
+				}
+
+				&.active{
+						&:before{
+										top:50%;
+										transform:translateY(-50%) rotate(45deg);
+										transition: all .5s;
+									}
+						&:after{
+										top:50%;
+										transform:translateY(-50%)  rotate(-45deg);
+										transition: all .5s;
+									}
+				}
+		}
+
+	.toggle__icon {
+		position: absolute;
+		left:0;
+		top:50%;
+		transform: translateY(-50%);
+		width: 100%;
+		height: 2px;
+		background: #fff;
+			.navbar__toggle.active &{
+				transform: scale(0);
+			}
+
+			}
+
+		.header {
+			&__content {
+				margin: 50px auto 0;
+				width: 90%;
+				text-align: center;
+			}
+			&__title {
+				&-em {
+					@include font(#fff,1.75rem,1.1,1.8px)
+					font-family: "Times New Roman";
+				}
+				&-strong {
+					@include font(#fff,4rem,normal,.3rem);
+					display: block;
+					text-transform: uppercase;
+				}
+			}
+
+			&__btn {
+				@include font(#fff,1.1rem,1.2,.7px,700);
+				display: inline-block;
+				margin: 40px 0;
+				border: 3px solid #fff;
+				padding: 25px 0 30px;
+				text-decoration: none;
+				text-transform: uppercase;
+				width: 280px;
+				box-sizing: border-box;
+				&:hover {
+					color:darken(#fff, 15%);
+					border-color: darken(#fff, 15%)
+				}
+			}
+			&__text {
+				@include font(#fff,.9rem,2,.7px);
+			text-shadow: -1px 1px 40px rgba(1, 1, 1, 0.55);
+			text-transform: uppercase;
+			}
+			&__link {
+				color: #fff;
+				font-weight: 700;
+					&:hover {
+						color:darken(#fff, 15%)
+					}
+				}
+			}
+
+
+	.benefit {
+			padding: 50px 0;
+
+			&__item {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			&__svg-wrapper {
+				width: 107px;
+				height: 107px;
+				margin:0 auto;
+				border: 2px solid black;
+				border-radius: 50%;
+				box-sizing: border-box;
+				}
+
+			&__svg {
+				stroke:#f57365;
+				fill:#f57365;
+				width: 60px;
+				height: 100%;
+
+			}
+			&-item__title {
+					@include font(#000,1.1rem,normal,.9px,700);
+				text-transform: uppercase;
+				margin: 20px 0 30px;
+				position: relative;
+				 &:after {
+						@include pseudo(88px,1px,50%,calc(100% + 10px));
+						transform: translateX(-50%);
+						background: #f57365;
+				 }
+				}
+				&-item__text {
+					@include font(#000,1rem,1.1,.8px,300);
+
+				}
+		}
+
+	.app {
+		background: #f7f7f7;
+		padding: 50px 0 30px;
+
+			&__img-wrapper {
+				display: none;
+			}
+
+			&__title {
+				@include font(#000,1.1rem,1.7,.7px,700);
+				text-transform: uppercase;
+				position: relative;
+				&:before {
+					@include pseudo(88px,1px,0,100%);
+					background: #f57365;
+				}
+			}
+			&__text {
+				@include font(#000,1rem,1.5,.8px,300);
+				margin: 15px 0 30px;
+				text-align: justify;
+
+				& :not(:last-child) {
+					margin: 0 0 15px;
+				}
+			}
+			&__link {
+				display: inline-block;
+				height: 40px;
+				background: url(../image/sprite.png);
+
+				&:not(:last-child){
+					margin-right:10px;
+				}
+				&.apple {
+					width: 112px;
+					background-position: -5px -54px;
+				}
+				&.google {
+					width: 120px;
+					background-position: -5px -5px;
+
+				}
+			}
+}
+
+	.reviews {
+	background: #4a3949;
+	text-align: center;
+		.container {
+			background: url(../image/reviews.png) no-repeat 100%;
+			padding: 75px 0 80px;
+		}
+
+		&__item {
+			text-align: center;
+			width: 75%;
+			margin: auto;
+		}
+
+
+		&__text {
+			@include font(#fff,1.9rem,1.2, normal, 100);
+
+			opacity: .3;
+			margin: 30px 0 0;
+		}
+		&__text-caption {
+			font-style: italic;
+			font-size: 18px;
+			margin: 20px 0 0;
+		}
+
+		.owl-carousel .owl-item img {
+			width: initial;
+			margin: auto;
+		}
+		.owl-carousel button.owl-dot {
+			width: 10px;
+			height: 10px;
+			background: #7a6e79;
+			border-radius: 50%;
+			margin-right: 10px;
+			&:focus {
+				outline: none;
+			}
+		}
+		.owl-carousel button.owl-dot.active {
+			background: #fff;
+		}
+		.owl-dots {
+			margin: 40px 0 0;
+		}
+}
+
+
+
+	.cuisines {
+		padding: 50px 0 0;
+	}
+	.cuisines__title {
+		@include font(#000,1.1rem,normal,.9px,700);
+		padding: 0 0 10px;
+		text-align: center;
+		position: relative;
+		text-transform: uppercase;
+		&:before {
+			@include pseudo(88px,1px,50%,100%);
+			background: #f57365;
+			transform: translateX(-50%);
+		}
+	}
+
+	.cuisines{
+
+				&__list {
+					margin: 40px 0 0;
+					display: flex;
+					flex-wrap: wrap;
+
+				}
+				&__item {
+					width: 50%;
+					position: relative;
+				}
+				&__link {
+					position: absolute;
+					top:0;
+					bottom: 0;
+					left:0;
+					right: 0;
+					z-index: 2;
+				}
+				&__img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+
+				}
+				&__caption {
+					position: absolute;
+					top:50%;
+					left:50%;
+					transform: translate(-50%,-50%);
+					text-align: center;
+				}
+				&__number {
+					@include font(#fff,.9rem,normal,1.8px);
+					opacity: .8;
+					font-family: "Times New Roman";
+
+				}
+				&__item-title {
+					@include font(#fff,1.1rem,normal,4.2px,700);
+					text-transform: uppercase;
+				}
+		}
+
+	.statistics {
+		padding: 60px 0;
+
+
+				&__number {
+					@include font(#000,2.25rem,normal,1.8px,700);
+					font-family: "Lato",sans-serif;
+					text-align: center;
+				}
+				&__text {
+					@include font(#787878,1rem,1.2,.8px,300);
+					text-align: center;
+					margin: 10px 0 0;
+				}
+				&__item:not(:last-child) {
+					margin: 0 0 20px;
+				}
+		}
+
+	.footer {
+		background: #f7f7f7;
+		padding: 40px 0;
+		.d-flex {
+			display: flex;
+			justify-content: space-between;
+		}
+		}
+		.copyright {
+			@include font(#8b8b8b,.9rem,normal,normal,300);
+			opacity: .5;
+		}
+		.design {
+			@include font(#8b8b8b,.9rem,normal,2.8px,300);
+			text-transform: uppercase;
+			&__link {
+				color: #000;
+				font-weight: 400;
+				text-decoration: none;
+				&:hover {
+					color: lighten(#000, 80%);
+				}
+			}
+
+		}
+
+				.scroll-up {
+				width: 60px;
+				height:60px;
+				position: fixed;
+				right: 50px;
+				bottom: 50px;
+				z-index: 5;
+					svg {
+						width: 100%;
+						height: 100%;
+						fill:#aa4e5f;
+					}
+					&:hover {
+						opacity: 0.7;
+					}
+					&:not(.show) {
+						display: none;
+					}
+			}
+
+
+	@media screen and (min-width:576px){
+		.cuisines__item-title {
+			font-size: 1.7rem;
+		}
+		.statistics {
+			&__item {
+				width: 40%;
+			}
+			.d-flex {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+			}
+		}
+
+	}
+	@media screen and (min-width:768px){
+
+		.benefit {
+				&__list {
+					display: flex;
+					justify-content: space-around;
+					flex-wrap: wrap;
+				}
+				&__item {
+					text-align: center;
+					display: flex;
+					flex-direction: column;
+					width: 45%;
+				}
+		}
+		.app {
+			padding: 50px 0 0px;
+			&__content {
+				padding: 0 0 40px;
+			}
+
+			&__img-wrapper {
+				display: block;
+			}
+			&__img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+			&__text {
+				text-align: left;
+			}
+			.d-flex {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+					&__item {
+						width: 46%;
+						}
+				}
+
+			}
+
+
+			.cuisines {
+					&__item {
+						width: 33.3%;
+					}
+					&__item-title {
+						normal-size: 1.9rem;
+					}
+			}
+			.statistics__item {
+				width: 25%;
+			}
+	}
+
+	@media screen and (min-width:992px) {
+
+			.header {
+				padding: 20px 0 150px;
+				&__content {
+					margin: 290px auto 0;
+					width: 420px;
+				}
+				&__title {
+						text-shadow: -1px 1px 40px rgba(1, 1, 1, 0.55);
+
+					&-em {
+						@include font(#fff,2.25rem,normal,1.8px)
+						opacity: 0.7;
+					}
+					&-strong {
+						@include font(#fff,6.25rem,normal,.3rem);
+					}
+				}
+			}
+
+			.navbar {
+				flex-direction: row;
+				&__brand {
+				margin: 0 auto 0 0;
+				width: initial;
+					order:1;
+				}
+			}
+
+			.enter__list {
+				order: 2;
+				margin: 0 30px 0 0;
+			}
+
+			.enter__link {
+				text-shadow: -1px 1px 40px rgba(1, 1, 1, 0.55);
+			}
+
+			.menu {
+				order:3;
+				&__list {
+					padding:20px;
+					background: rgba(140,103,100,.8);
+					right:0;
+					transform: initial;
+				}
+			}
+
+			.navbar__toggle {
+				width: 14px;
+				height: 14px;
+				&:before {
+						box-shadow: 0 .5px 1px #fff ;
+				}
+				&:after {
+						box-shadow: 0 -.5px 1px #fff ;
+				}
+			}
+
+			.toggle__icon {
+				box-shadow: 0 .5px 1px #fff,0 -.5px 1px #fff ;
+				}
+
+
+
+
+			.benefit {
+					padding: 100px 0;
+					&__item{
+						width: 32%;
+					}
+			}
+
+			.app {
+				padding: 100px 0 0;
+
+			}
+			.app__img {
+				filter:drop-shadow(-12px 11px 2px rgba(90, 90, 90, 0.07));
+				max-height: 700px;
+				&__content {
+					padding: 0 0 100px;
+				}
+
+				&__text {
+					& :not(:last-child) {
+						margin: 0 0 40px;
+					}
+				}
+			}
+
+
+			.cuisines__item {
+					width: 25%;
+					&:hover .cuisines__img {
+						filter: brightness(120%);
+				}
+			}
+
+
+
+		.statistics {
+				.d-flex {
+					flex-wrap: nowrap;
+				}
+
+				&__item:not(:last-child) {
+					margin: 0;
+				}
+			}
+	}
+	@media screen and (min-width:1200px){
+
+
+		.header {
+			padding: 20px 0 230px;
+		}
+
+		.container {
+			padding: 0;
+			margin: auto;
+		}
+
+
+		.app__img {
+			filter:drop-shadow(-22px 11px 2px rgba(90, 90, 90, 0.07));
+			max-height: initial;
+		}
+		.app__content {
+			padding:0 0 275px 0;
+		}
+
+		.cuisines {
+			padding: 100px 0 0;
+				&__item {
+					width: 20%;
+				}
+			}
+
+	}
+	@media screen and (min-width: 1450px){
+		.cuisines__item-title {
+			font-size: 2.25rem;
+		}
+	}
