@@ -386,21 +386,20 @@
 		padding: 50px 0 0;
 		max-width: 1600px;
 		margin: auto;
-	}
-	.cuisines__title {
+
+	&__title {
 		@include font(#000,1.1rem,normal,.9px,700);
 		padding: 0 0 10px;
 		text-align: center;
 		position: relative;
 		text-transform: uppercase;
-		&:before {
-			@include pseudo(88px,1px,50%,100%);
-			background: #f57365;
-			transform: translateX(-50%);
+			&:before {
+				@include pseudo(88px,1px,50%,100%);
+				background: #f57365;
+				transform: translateX(-50%);
+			}
 		}
-	}
 
-	.cuisines{
 
 				&__list {
 					margin: 40px 0 0;
