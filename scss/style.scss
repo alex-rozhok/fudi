@@ -384,6 +384,8 @@
 
 	.cuisines {
 		padding: 50px 0 0;
+		max-width: 1600px;
+		margin: auto;
 	}
 	.cuisines__title {
 		@include font(#000,1.1rem,normal,.9px,700);
@@ -404,7 +406,6 @@
 					margin: 40px 0 0;
 					display: flex;
 					flex-wrap: wrap;
-
 				}
 				&__item {
 					width: 50%;
